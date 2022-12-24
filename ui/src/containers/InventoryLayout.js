@@ -168,6 +168,7 @@ const InventoryLayout = (props) => {
           handleDialog={toggleModals}
           handleInventory={createInventory}
           initialValues={{}}
+          units={MeasurementUnits}
         />
       </Grid>
     </Grid>
