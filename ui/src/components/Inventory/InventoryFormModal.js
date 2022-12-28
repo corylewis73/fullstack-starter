@@ -18,7 +18,7 @@ class InventoryFormModal extends React.Component {
         initialValues,
         units
       } = this.props
-      
+
       return (
         <Dialog
         open={this.props.isDialogOpen}
@@ -66,8 +66,8 @@ class InventoryFormModal extends React.Component {
                         name='unitOfMeasurement'
                         id='unitOfMeasurement'
                         component='select'>
-                        {{units}
-                          .map(u => {return(<option unitOfMeasurement={u}></option>)})}
+                        {units
+                          .map(u => {return(<option unitOfMeasurement={u}>{u}</option>)})}
                       </Field>
 
                     </Grid>
