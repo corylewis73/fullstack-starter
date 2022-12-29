@@ -50,7 +50,7 @@ class InventoryFormModal extends React.Component {
                         label='Name'
                         component={TextField}
                       />
-                      <label for='productType'>Choose a Product Type: </label>
+                      <label for='productType'>Product Type: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='productType'
@@ -60,16 +60,47 @@ class InventoryFormModal extends React.Component {
                         <option productType='Hops'>Hops</option>
                         <option productType='Malt'>Malt</option>
                       </Field>
-                      <label for='unitOfMeasurement'>Choose a unit of measurement: </label>
+                      <Field
+                        custom={{ variant: 'outlined', fullWidth: true, }}
+                        name='description'
+                        label='Description'
+                        component={TextField}
+                      />
+                      <label for='averagePrice'>Average Price: </label>
+                      <Field
+                        custom={{ variant: 'outlined', fullWidth: true, }}
+                        name='averagePrice'
+                        id='averagePrice'
+                        label='Average Price'
+                        type='number'
+                        component='input'>
+                      </Field>
+                      <label for='unitOfMeasurement'>Unit of measurement: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='unitOfMeasurement'
                         id='unitOfMeasurement'
                         component='select'>
+                        <option unitOfMeasurement=''></option>
                         {units
                           .map(u => {return(<option unitOfMeasurement={u}>{u}</option>)})}
                       </Field>
-
+                      <label for='bestBeforeDate'>Best Before Date: </label>
+                      <Field
+                        custom={{ variant: 'outlined', fullWidth: true, }}
+                        name='bestBeforeDate'
+                        id='bestBeforeDate'
+                        type='datetime-local'
+                        component='input'>
+                      </Field>
+                      <label for='neverExpires'>Never Expires: </label>
+                      <Field
+                      custom={{ variant: 'outlined', fullWidth: true, }}
+                      name='neverExpires'
+                      id='neverExpires'
+                      type='checkbox'
+                      component='input'>
+                      </Field>
                     </Grid>
                   </Grid>
                 </DialogContent>
