@@ -19,6 +19,14 @@ class InventoryFormModal extends React.Component {
         units
       } = this.props
 
+      const date = new Date();
+
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      
+      let currentDate = `${year}-${month}-${day}`;
+
       return (
         <Dialog
         open={this.props.isDialogOpen}
@@ -93,6 +101,7 @@ class InventoryFormModal extends React.Component {
                         name='bestBeforeDate'
                         id='bestBeforeDate'
                         type='date'
+                        value={currentDate}
                         component='input'>
                       </Field>
                       <label for='neverExpires'>Never Expires: </label>
