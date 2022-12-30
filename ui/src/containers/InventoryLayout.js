@@ -112,6 +112,14 @@ const InventoryLayout = (props) => {
 
   const isSelected = (id) => selected.indexOf(id) !== -1
 
+  const date = new Date();
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  
+  let currentDate = `${year}-${month}-${day}`;
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -167,7 +175,7 @@ const InventoryLayout = (props) => {
           isDialogOpen={isCreateOpen}
           handleDialog={toggleModals}
           handleInventory={createInventory}
-          initialValues={{}}
+          initialValues={{bestBeforeDate: currentDate}}
           units={Object.keys(MeasurementUnits)}
         />
       </Grid>
