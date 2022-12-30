@@ -29,6 +29,8 @@ class InventoryFormModal extends React.Component {
           <Formik
             initialValues={initialValues}
             onSubmit={values => {
+              console.log('values after submit', values)
+              values.bestBeforeDate = values.bestBeforeDate + 'T12:00:00Z'
               handleInventory(values)
               handleDialog(true)
             }}>
@@ -90,7 +92,7 @@ class InventoryFormModal extends React.Component {
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='bestBeforeDate'
                         id='bestBeforeDate'
-                        type='datetime-local'
+                        type='date'
                         component='input'>
                       </Field>
                       <label for='neverExpires'>Never Expires: </label>
