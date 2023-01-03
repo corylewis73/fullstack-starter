@@ -111,14 +111,29 @@ const InventoryLayout = (props) => {
   }
 
   const isSelected = (id) => selected.indexOf(id) !== -1
+  
+  const getProductTypes = () => {
+    let productTypes = []
+    let newProduct = true
+    for(let i=0; i < Object.keys(inventory).length; i++) {
+      newProduct = true
+      for(let j=0; j < Object.keys(productTypes).length; j++) {
+        if (inventory[i].productType === productTypes[j]) {
+          console.log(inventory[i].productType, "is not a new product type")
+          newProduct = false
+        }
+      }
+      if (newProduct) {
+        console.log("Adding product type: ", inventory[i].productType)
+        productTypes.push(inventory[i].productType)
+      }
+    }
+    console.log("Product Types: ", productTypes)
+    return productTypes
+  }
 
   const date = new Date();
-
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-  
-  let currentDate = `${year}-${month}-${day}`;
+  let currentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
   return (
     <Grid container>
@@ -175,8 +190,15 @@ const InventoryLayout = (props) => {
           isDialogOpen={isCreateOpen}
           handleDialog={toggleModals}
           handleInventory={createInventory}
-          initialValues={{bestBeforeDate: currentDate}}
+          initialValues={{name: 'name',
+                          productType: 'none',
+                          description: 'none',
+                          averagePrice: '0',
+                          unitOfMeasurement: '',
+                          bestBeforeDate: currentDate,
+                          neverExpires: false}}
           units={Object.keys(MeasurementUnits)}
+          productTypes={getProductTypes()}
         />
       </Grid>
     </Grid>

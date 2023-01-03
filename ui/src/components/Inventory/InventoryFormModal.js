@@ -16,8 +16,29 @@ class InventoryFormModal extends React.Component {
         handleInventory,
         title,
         initialValues,
+        productTypes,
         units
       } = this.props
+
+  console.log("Product Types begining: ", productTypes)
+
+  const validate = (values) => {
+    const errors = {}
+
+    console.log("Validating inventory form")
+
+    if (!values.name) {
+      errors.name = 'Required'
+    }
+    if (!values.productType) {
+      errors.name = 'Required'
+    }
+    if (!values.unitOfMeasurement) {
+      errors.name = 'Required'
+    }
+
+    return errors
+  }
 
       return (
         <Dialog
@@ -27,6 +48,7 @@ class InventoryFormModal extends React.Component {
         onClose={() => { handleDialog(false) }}
         >
           <Formik
+            validate={validate}
             initialValues={initialValues}
             onSubmit={values => {
               console.log('values after submit', values)
@@ -36,7 +58,6 @@ class InventoryFormModal extends React.Component {
             }}>
             {helpers =>
               <Form
-              noValidate
               autoComplete='off'
               id={formName}
               >
@@ -57,10 +78,14 @@ class InventoryFormModal extends React.Component {
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='productType'
                         id='productType'
+                        type='text'
                         component='select'>
                         <option productType=''></option>
-                        <option productType='Hops'>Hops</option>
-                        <option productType='Malt'>Malt</option>
+                        {productTypes
+                          .map(types => {
+                            return(<option productType={types}>{types}</option>)
+                          })
+                        }
                       </Field>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
@@ -97,11 +122,11 @@ class InventoryFormModal extends React.Component {
                       </Field>
                       <label for='neverExpires'>Never Expires: </label>
                       <Field
-                      custom={{ variant: 'outlined', fullWidth: true, }}
-                      name='neverExpires'
-                      id='neverExpires'
-                      type='checkbox'
-                      component='input'>
+                        custom={{ variant: 'outlined', fullWidth: true, }}
+                        name='neverExpires'
+                        id='neverExpires'
+                        type='checkbox'
+                        component='input'>
                       </Field>
                     </Grid>
                   </Grid>
