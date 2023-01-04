@@ -114,17 +114,16 @@ const InventoryLayout = (props) => {
   
   const getProductTypes = () => {
     let productTypes = []
-    let newProduct = true
+    let newProductType = true
     for(let i=0; i < Object.keys(inventory).length; i++) {
-      newProduct = true
+      newProductType = true
       for(let j=0; j < Object.keys(productTypes).length; j++) {
         if (inventory[i].productType === productTypes[j]) {
-          console.log(inventory[i].productType, "is not a new product type")
-          newProduct = false
+          newProductType = false
         }
       }
-      if (newProduct) {
-        console.log("Adding product type: ", inventory[i].productType)
+      if (newProductType) {
+        console.log("Adding new product type: ", inventory[i].productType)
         productTypes.push(inventory[i].productType)
       }
     }
@@ -132,8 +131,13 @@ const InventoryLayout = (props) => {
     return productTypes
   }
 
-  const date = new Date();
-  let currentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const date = new Date()
+
+  let year = date.getFullYear()
+  let month = (date.getMonth() + 1).toString().padStart(2, '0')
+  let day = date.getDate().toString().padStart(2, '0')
+
+  let currentDate = `${year}-${month}-${day}`
 
   return (
     <Grid container>
@@ -195,7 +199,7 @@ const InventoryLayout = (props) => {
                           description: 'none',
                           averagePrice: '0',
                           unitOfMeasurement: '',
-                          bestBeforeDate: currentDate,
+                          bestBeforeDate: currentDate.toString(),
                           neverExpires: false}}
           units={Object.keys(MeasurementUnits)}
           productTypes={getProductTypes()}

@@ -20,8 +20,6 @@ class InventoryFormModal extends React.Component {
         units
       } = this.props
 
-  console.log("Product Types begining: ", productTypes)
-
   const validate = (values) => {
     const errors = {}
 
@@ -73,7 +71,7 @@ class InventoryFormModal extends React.Component {
                         label='Name'
                         component={TextField}
                       />
-                      <label for='productType'>Product Type: </label>
+                      <label for='productType'> Product Type: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='productType'
@@ -87,13 +85,20 @@ class InventoryFormModal extends React.Component {
                           })
                         }
                       </Field>
+                      <label for='newProductType'> New Product Type: </label>
+                      <Field
+                        custom={{ variant: 'outlined'}}
+                        name='productType'
+                        id='newProductType'
+                        component={TextField}
+                      />
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='description'
                         label='Description'
                         component={TextField}
                       />
-                      <label for='averagePrice'>Average Price: </label>
+                      <label for='averagePrice'> Average Price: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='averagePrice'
@@ -102,7 +107,7 @@ class InventoryFormModal extends React.Component {
                         type='number'
                         component='input'>
                       </Field>
-                      <label for='unitOfMeasurement'>Unit of measurement: </label>
+                      <label for='unitOfMeasurement'> Unit of measurement: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='unitOfMeasurement'
@@ -112,15 +117,15 @@ class InventoryFormModal extends React.Component {
                         {units
                           .map(u => {return(<option unitOfMeasurement={u}>{u}</option>)})}
                       </Field>
-                      <label for='bestBeforeDate'>Best Before Date: </label>
+                      <label for='bestBeforeDate'> Best Before Date: </label>
                       <Field
-                        custom={{ variant: 'outlined', fullWidth: true, }}
+                        custom={{ variant: 'outlined', fullWidth: true, }}                        
                         name='bestBeforeDate'
                         id='bestBeforeDate'
                         type='date'
                         component='input'>
                       </Field>
-                      <label for='neverExpires'>Never Expires: </label>
+                      <label for='neverExpires'> Never Expires: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='neverExpires'
