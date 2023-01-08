@@ -123,21 +123,14 @@ const InventoryLayout = (props) => {
         }
       }
       if (newProductType) {
-        console.log("Adding new product type: ", inventory[i].productType)
         productTypes.push(inventory[i].productType)
       }
     }
-    console.log("Product Types: ", productTypes)
     return productTypes
   }
 
   const date = new Date()
-
-  let year = date.getFullYear()
-  let month = (date.getMonth() + 1).toString().padStart(2, '0')
-  let day = date.getDate().toString().padStart(2, '0')
-
-  let currentDate = `${year}-${month}-${day}`
+  let currentDate = moment(date).format('YYYY-MM-DD')
 
   return (
     <Grid container>
@@ -194,9 +187,9 @@ const InventoryLayout = (props) => {
           isDialogOpen={isCreateOpen}
           handleDialog={toggleModals}
           handleInventory={createInventory}
-          initialValues={{name: 'name',
-                          productType: 'none',
-                          description: 'none',
+          initialValues={{name: '',
+                          productType: '',
+                          description: '',
                           averagePrice: '0',
                           unitOfMeasurement: '',
                           bestBeforeDate: currentDate.toString(),

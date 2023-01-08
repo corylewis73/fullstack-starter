@@ -49,7 +49,6 @@ class InventoryFormModal extends React.Component {
             validate={validate}
             initialValues={initialValues}
             onSubmit={values => {
-              console.log('values after submit', values)
               values.bestBeforeDate = values.bestBeforeDate + 'T12:00:00Z'
               handleInventory(values)
               handleDialog(true)
