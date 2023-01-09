@@ -48,6 +48,7 @@ const InventoryLayout = (props) => {
   const classes = useStyles()
   const dispatch = useDispatch()
   const inventory = useSelector(state => state.inventory.all)
+  const products = useSelector(state => state.products.all)
   const isFetched = useSelector(state => state.inventory.fetched && state.products.fetched)
   
   const createInventory = useCallback(inventory => { dispatch(inventoryDuck.createInventory(inventory)) }, [dispatch])
@@ -111,23 +112,6 @@ const InventoryLayout = (props) => {
   }
 
   const isSelected = (id) => selected.indexOf(id) !== -1
-  
-  const getProductTypes = () => {
-    let productTypes = []
-    let newProductType = true
-    for(let i=0; i < Object.keys(inventory).length; i++) {
-      newProductType = true
-      for(let j=0; j < Object.keys(productTypes).length; j++) {
-        if (inventory[i].productType === productTypes[j]) {
-          newProductType = false
-        }
-      }
-      if (newProductType) {
-        productTypes.push(inventory[i].productType)
-      }
-    }
-    return productTypes
-  }
 
   const date = new Date()
   let currentDate = moment(date).format('YYYY-MM-DD')
@@ -194,8 +178,8 @@ const InventoryLayout = (props) => {
                           unitOfMeasurement: '',
                           bestBeforeDate: currentDate.toString(),
                           neverExpires: false}}
+          products={products}
           units={Object.keys(MeasurementUnits)}
-          productTypes={getProductTypes()}
         />
       </Grid>
     </Grid>

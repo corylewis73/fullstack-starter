@@ -16,14 +16,12 @@ class InventoryFormModal extends React.Component {
         handleInventory,
         title,
         initialValues,
-        productTypes,
+        products,
         units
       } = this.props
 
   const validate = (values) => {
     const errors = {}
-
-    console.log("Validating inventory form")
 
     if (!values.name) {
       errors.name = 'Required'
@@ -77,10 +75,11 @@ class InventoryFormModal extends React.Component {
                         id='productType'
                         type='text'
                         component='select'>
+                        <input type="text" name="productType"/>
                         <option productType=''></option>
-                        {productTypes
-                          .map(types => {
-                            return(<option productType={types}>{types}</option>)
+                        {products
+                          .map(p => {
+                            return(<option productType={p.name}>{p.name}</option>)
                           })
                         }
                       </Field>
