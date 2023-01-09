@@ -75,7 +75,6 @@ class InventoryFormModal extends React.Component {
                         id='productType'
                         type='text'
                         component='select'>
-                        <input type="text" name="productType"/>
                         <option productType=''></option>
                         {products
                           .map(p => {
