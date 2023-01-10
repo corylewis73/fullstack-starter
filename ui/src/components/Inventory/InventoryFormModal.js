@@ -82,13 +82,6 @@ class InventoryFormModal extends React.Component {
                           })
                         }
                       </Field>
-                      <label for='newProductType'> New Product Type: </label>
-                      <Field
-                        custom={{ variant: 'outlined'}}
-                        name='productType'
-                        id='newProductType'
-                        component={TextField}
-                      />
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='description'
