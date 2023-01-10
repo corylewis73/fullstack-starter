@@ -68,6 +68,8 @@ class InventoryFormModal extends React.Component {
                         label='Name'
                         component={TextField}
                       />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <label for='productType'> Product Type: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
@@ -82,12 +84,16 @@ class InventoryFormModal extends React.Component {
                           })
                         }
                       </Field>
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
                         name='description'
                         label='Description'
                         component={TextField}
                       />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <label for='averagePrice'> Average Price: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
@@ -97,6 +103,8 @@ class InventoryFormModal extends React.Component {
                         type='number'
                         component='input'>
                       </Field>
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <label for='unitOfMeasurement'> Unit of measurement: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
@@ -107,6 +115,8 @@ class InventoryFormModal extends React.Component {
                         {units
                           .map(u => {return(<option unitOfMeasurement={u}>{u}</option>)})}
                       </Field>
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <label for='bestBeforeDate'> Best Before Date: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}                        
@@ -115,6 +125,8 @@ class InventoryFormModal extends React.Component {
                         type='date'
                         component='input'>
                       </Field>
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
                       <label for='neverExpires'> Never Expires: </label>
                       <Field
                         custom={{ variant: 'outlined', fullWidth: true, }}
