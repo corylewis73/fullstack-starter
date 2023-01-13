@@ -15,6 +15,7 @@ import { EnhancedTableHead, EnhancedTableToolbar, getComparator, stableSort } fr
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import InventoryFormModal from '../components/Inventory/InventoryFormModal'
+import InventoryDeleteModal from '../components/Inventory/InventoryDeleteModal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,6 +52,7 @@ const InventoryLayout = (props) => {
   const products = useSelector(state => state.products.all)
   const isFetched = useSelector(state => state.inventory.fetched && state.products.fetched)
   
+  const deleteInventory = useCallback(ids => { dispatch(inventoryDuck.deleteInventory(ids)) }, [dispatch])
   const createInventory = useCallback(inventory => { dispatch(inventoryDuck.createInventory(inventory)) }, [dispatch])
 
   useEffect(() => {
@@ -66,12 +68,16 @@ const InventoryLayout = (props) => {
   const [selected, setSelected] = React.useState([])
 
   const [isCreateOpen, setCreateOpen] = React.useState(false)
+  const [isDeleteOpen, setDeleteOpen] = React.useState(false)
   const toggleCreate = () => {
     setCreateOpen(true)
   }
+  const toggleDelete = () => {
+    setDeleteOpen(true)
+  }
   const toggleModals = (resetSelected) => {
     setCreateOpen(false)
-    //setDeleteOpen(false)
+    setDeleteOpen(false)
     //setEditOpen(false)
     if (resetSelected) {
       setSelected([])
@@ -123,6 +129,7 @@ const InventoryLayout = (props) => {
         numSelected={selected.length} 
         title='Inventory'
         toggleCreate={toggleCreate}
+        toggleDelete={toggleDelete}
         />
         <TableContainer component={Paper}>
           <Table size='small' stickyHeader>
@@ -180,6 +187,12 @@ const InventoryLayout = (props) => {
                           neverExpires: false}}
           products={products}
           units={Object.keys(MeasurementUnits)}
+        />
+        <InventoryDeleteModal
+          isDialogOpen={isDeleteOpen}
+          handleDelete={deleteInventory}
+          handleDialog={toggleModals}
+          initialValues={selected}
         />
       </Grid>
     </Grid>
